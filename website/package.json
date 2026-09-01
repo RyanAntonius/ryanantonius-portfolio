@@ -6,6 +6,7 @@
     "astro": "astro",
     "dev": "astro dev",
     "build": "astro build",
+    "build:github-pages": "astro build && node scripts/prepare-github-pages.mjs",
     "wix": "wix",
     "preview": "wix preview",
     "release": "wix release",
