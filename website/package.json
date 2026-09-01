@@ -4,9 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "astro": "astro",
-    "dev": "astro dev",
-    "build": "astro build",
-    "build:github-pages": "astro build && node scripts/prepare-github-pages.mjs",
+    "dev": "wix dev",
+    "build": "wix build",
     "wix": "wix",
     "preview": "wix preview",
     "release": "wix release",
