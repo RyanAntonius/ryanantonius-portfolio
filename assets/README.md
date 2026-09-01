@@ -1,1 +1,3 @@
-This folder contains the image and video library used by the website.
+# Assets
+
+Project images and videos will be organized here by discipline and project.

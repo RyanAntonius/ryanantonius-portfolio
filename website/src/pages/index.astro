@@ -1,0 +1,147 @@
+---
+import EditableCopy from '../components/EditableCopy.astro';
+const heroImages = [
+  {
+    src: 'https://static.wixstatic.com/media/97a2bb_6876cb3671574fb9aa844325fd044eac~mv2.jpg',
+    alt: 'RazerStore Chongqing interior render',
+  },
+  {
+    src: 'https://static.wixstatic.com/media/97a2bb_2666d86cd934403c8661790eef22916c~mv2.jpg',
+    alt: 'ChinaJoy 2026 event design',
+  },
+  {
+    src: 'https://static.wixstatic.com/media/97a2bb_da88267929964101adea6f7c60f6551e~mv2.jpg',
+    alt: 'AERO industrial design project',
+  },
+];
+const disciplines = [
+  {
+    id: 'retail',
+    number: '01',
+    title: 'Retail design',
+    intro: 'Immersive retail environments where brand, product discovery and customer flow work as one.',
+    projects: [
+      { name: 'RazerStore Taiyuan', href: '/taiyuan', image: 'https://static.wixstatic.com/media/97a2bb_1629d32ad7fc4dee94f9147b8faa0f11~mv2.jpg' },
+      { name: 'Ultimate Retail Demo', href: '/ultimate-retail-demo', image: 'https://static.wixstatic.com/media/97a2bb_21ef6f3be00742a4a6f2a60286dbb7e4~mv2.jpg' },
+      { name: 'XPERION Hamburg Shop-In-Shop', href: '/retail/xperion-hamburg', image: 'https://static.wixstatic.com/media/97a2bb_ba0823eb9dcc48b7b7aee063cabf91d0~mv2.jpg' },
+    ],
+  },
+  {
+    id: 'event',
+    number: '02',
+    title: 'Event design',
+    intro: 'Experiences designed to turn a moment into a lasting brand connection.',
+    projects: [
+      { name: 'CES 2025', href: '/event/ces-2025', image: 'https://static.wixstatic.com/media/97a2bb_42293a6eb1f94161ad08d9ac94e003c8~mv2.jpg' },
+      { name: 'Brasil Game Show 2023', href: '/event/brasil-game-show-2023', image: 'https://static.wixstatic.com/media/97a2bb_2ae9b9feb8bb4b8280f2df9d1c1b62d6~mv2.jpg' },
+      { name: 'ChinaJoy 2026', href: '/event/chinajoy-2026', image: 'https://static.wixstatic.com/media/97a2bb_c870835d17ef4aaab2f7cc811c90f9d8~mv2.jpg' },
+    ],
+  },
+  {
+    id: 'industrial',
+    number: '03',
+    title: 'Industrial design',
+    intro: 'Objects and product systems shaped around use, character and real-world production.',
+    projects: [
+      { name: 'AERO', href: '/industrial/aero', image: 'https://static.wixstatic.com/media/97a2bb_45ed5f1962c44fd9a3363fc89e58ce7a~mv2.jpg' },
+      { name: 'QIQ Mobility', href: '/industrial/qiq-mobility', image: 'https://static.wixstatic.com/media/97a2bb_66dd921fddc647a9a89a9b435c37b346~mv2.jpg' },
+      { name: 'QIQ Pod', href: '/industrial/qiq-pod', image: 'https://static.wixstatic.com/media/97a2bb_30a2c97a232647328d3c3e5b7f978aff~mv2.png' },
+    ],
+  },
+];
+---
+<EditableCopy />
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ryan Antonius — Multidisciplinary Designer</title>
+    <meta name="description" content="Ryan Antonius is a multidisciplinary designer working across retail, event and industrial design." />
+  </head>
+  <body>
+    <main>
+      <section class="hero" id="work">
+        <div class="hero-media" aria-label="A rotating selection of Ryan Antonius projects">
+          {heroImages.map((image) => <img src={image.src} alt={image.alt} />)}
+        </div>
+        <div class="hero-shade"></div>
+        <header class="nav">
+          <a class="wordmark" href="/">RYAN ANTONIUS</a>
+          <nav id="mobile-navigation" aria-label="Primary navigation">
+            <a href="#work">WORK</a><a href="#contact">CONTACT</a><a href="/about">ABOUT</a>
+          </nav>
+          <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-navigation"><i></i><i></i></button>
+        </header>
+        <div class="hero-copy">
+          <p class="eyebrow">MULTIDISCIPLINARY DESIGNER</p>
+          <h1>Making brands<br />tangible.</h1>
+          <p class="categories"><span>RETAIL DESIGN <b>·</b> EVENT DESIGN</span><span>INDUSTRIAL DESIGN <b>·</b> GRAPHIC DESIGN</span></p>
+          <a class="button button-light" href="#retail">VIEW SELECTED WORK <span>→</span></a>
+        </div>
+      </section>
+
+      <section class="intro-panel">
+        <p class="eyebrow">SELECTED WORK</p>
+        <p>Three practices. One approach: build considered experiences from the first idea through to the real world.</p>
+      </section>
+
+      {disciplines.map((discipline) => (
+        <section class="discipline" id={discipline.id}>
+          <div class="discipline-heading">
+            <p class="eyebrow">{discipline.number} · SELECTED WORK</p>
+            <h2>{discipline.title}</h2>
+            <p class="discipline-intro">{discipline.intro}</p>
+            <a class="text-link" href={`/${discipline.id}`}>VIEW ALL {discipline.title.toUpperCase()} <span>→</span></a>
+          </div>
+          <div class="project-rail" aria-label={`${discipline.title} projects`}>
+            {discipline.projects.map((project, index) => (
+              <a class="project" href={project.href || '#'}>
+                <div class:list={[`project-media media-${index + 1}`, { 'has-image': !!project.image }]} style={project.image ? `background-image:url(${project.image})` : undefined}><span>{project.image ? project.name : 'REPLACE WITH PROJECT IMAGE'}</span></div>
+                <div class="project-caption"><span>{String(index + 1).padStart(2, '0')}</span><div><h3>{project.name}</h3><p>{discipline.title}</p></div><b>→</b></div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+
+      <section class="capabilities">
+        <p class="eyebrow">CAPABILITIES</p>
+        <div class="capability-grid">
+          <article><span>01</span><h3>Concept & strategy</h3><p>Design strategy<br />Brand storytelling<br />Creative direction</p></article>
+          <article><span>02</span><h3>Design & visualisation</h3><p>Spatial design<br />Product design<br />3D modelling & rendering</p></article>
+          <article><span>03</span><h3>Development & execution</h3><p>Technical development<br />Material exploration<br />Production coordination</p></article>
+          <article><span>04</span><h3>Collaboration</h3><p>Cross-functional teams<br />Clients & stakeholders<br />End-to-end support</p></article>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="about-media"><img src="https://static.wixstatic.com/media/97a2bb_cfa93a1f5e8a4f78ad70dce924a3f9ad~mv2.jpg" alt="Portrait of Ryan Antonius" /></div>
+        <div class="about-copy"><p class="eyebrow">ABOUT</p><h2>Design is how<br />I connect ideas with<br />the physical world.</h2><p>I’m Ryan — a multidisciplinary designer working across retail experiences, event design and industrial design.</p><a class="button button-dark" href="/about">LEARN MORE ABOUT ME <span>→</span></a></div>
+      </section>
+    </main>
+    <footer id="contact"><span>RYAN ANTONIUS © 2026</span><span>LINKEDIN &nbsp; / &nbsp; EMAIL &nbsp; / &nbsp; INSTAGRAM</span><a href="#work">BACK TO TOP ↑</a></footer>
+  </body>
+</html>
+
+<script>
+  const menuButton = document.querySelector('.menu');
+  const siteHeader = document.querySelector('.nav');
+  const closeNavigation = () => { siteHeader?.classList.remove('is-open'); menuButton?.setAttribute('aria-expanded', 'false'); menuButton?.setAttribute('aria-label', 'Open navigation'); };
+  menuButton?.addEventListener('click', () => { const open = !siteHeader?.classList.contains('is-open'); siteHeader?.classList.toggle('is-open', open); menuButton.setAttribute('aria-expanded', String(open)); menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation'); });
+  siteHeader?.querySelectorAll('nav a').forEach((link) => link.addEventListener('click', closeNavigation));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') closeNavigation(); });
+</script>
+
+<style>
+  :global(*){box-sizing:border-box}:global(html){scroll-behavior:smooth}:global(body){margin:0;background:#f5f3ee;color:#11110f;font-family:Arial,Helvetica,sans-serif}.hero{min-height:100svh;position:relative;color:#fff;background:#0a0b0a;overflow:hidden}.hero-media{position:absolute;inset:0}.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;animation:hero-fade 18s infinite}.hero-media img:nth-child(2){animation-delay:-12s}.hero-media img:nth-child(3){animation-delay:-6s}.hero-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.82),rgba(0,0,0,.23) 58%,rgba(0,0,0,.1))}.nav{height:82px;position:relative;z-index:1;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(20px,4vw,72px);font-size:10px;font-weight:500;letter-spacing:.18em}.wordmark,.nav a{color:#fff;text-decoration:none}.nav nav{display:flex;gap:31px}.menu{display:none;background:none;border:0;width:32px;padding:5px}.menu i{display:block;height:1px;background:#fff;margin:6px 0}.hero-copy{position:relative;z-index:1;max-width:740px;padding:clamp(60px,13vh,150px) clamp(20px,5.2vw,102px) 50px}.eyebrow{margin:0 0 18px;font-size:10px;font-weight:500;letter-spacing:.18em}.hero h1{margin:0;font-size:clamp(45px,5.4vw,94px);font-weight:400;line-height:.96;letter-spacing:-.065em}.categories{margin:28px 0 43px;font-size:10px;font-weight:500;line-height:2;letter-spacing:.16em;max-width:600px}.categories b{padding:0 5px;color:#b7ff24}.button{display:inline-flex;gap:40px;align-items:center;padding:17px 22px;border:1px solid currentColor;text-decoration:none;font-size:10px;font-weight:500;letter-spacing:.09em}.button span{font-size:18px;line-height:0}.button-light{color:#fff}.hero-meta{position:absolute;z-index:1;right:4vw;bottom:22px;text-align:right;font-size:9px;line-height:1.7;letter-spacing:.12em}.hero-meta strong{font-weight:400}.hero-meta span{display:block;margin-top:3px}.intro-panel{border-bottom:1px solid #c9c6bd;padding:33px clamp(20px,5vw,72px);display:flex;justify-content:space-between;gap:30px}.intro-panel p:last-child{max-width:500px;margin:0;font-size:18px;line-height:1.35}.discipline{padding:clamp(62px,9vw,135px) 0;border-bottom:1px solid #c9c6bd;overflow:hidden}.discipline-heading{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:24px;align-items:end;padding:0 clamp(20px,5vw,72px) 35px}.discipline-heading .eyebrow{grid-column:1}.discipline h2{grid-column:1;margin:0;font-size:clamp(47px,5vw,78px);font-weight:400;line-height:.92;letter-spacing:-.065em}.discipline-intro{grid-column:2;margin:0;max-width:350px;font-size:15px;line-height:1.45}.text-link{grid-column:3;justify-self:end;color:inherit;font-size:10px;font-weight:500;letter-spacing:.13em;text-decoration:none}.text-link span{font-size:17px;margin-left:16px}.project-rail{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:0 clamp(20px,5vw,72px)}.project{min-width:0;text-decoration:none;color:inherit}.project-media{height:clamp(220px,26vw,365px);display:grid;place-items:center;background:#d7d6d0;border:1px solid #c9c6bd;position:relative;overflow:hidden;background-size:cover;background-position:center;transition:transform .45s cubic-bezier(.2,.75,.25,1),filter .45s ease,box-shadow .45s ease}.project-media:before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,0,0,.08),transparent 60%),linear-gradient(45deg,#9eaaa3,#e0e1dc 70%);opacity:.65;transition:opacity .45s ease}.project-media.media-2:before{background:linear-gradient(45deg,#151b18,#708069 56%,#d9d8d1)}.project-media.media-3:before{background:linear-gradient(135deg,#e5e2d8,#776f65)}.project-media.has-image:before{background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.34));opacity:1}.project-media span,.about-media span{position:relative;z-index:1;font-size:9px;letter-spacing:.12em;color:#3d3e39}.project-media.has-image span{opacity:0;color:#fff;transition:opacity .3s ease}.project:hover .project-media{transform:translateY(-5px) scale(1.012);filter:saturate(1.08) contrast(1.04);box-shadow:0 18px 28px rgba(0,0,0,.15)}.project:hover .project-media.has-image span{opacity:1}.project-caption{display:grid;grid-template-columns:42px 1fr 20px;gap:10px;border-bottom:1px solid #c9c6bd;padding:14px 2px 17px;font-size:13px}.project-caption>span{font-size:13px}.project-caption h3,.project-caption p{margin:0}.project-caption h3{font-weight:500}.project-caption p{color:#6d6c65;font-size:11px;line-height:1.5}.project-caption b{font-size:21px;font-weight:400}.capabilities{padding:clamp(65px,9vw,120px) clamp(20px,5vw,72px);border-bottom:1px solid #c9c6bd}.capability-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:45px}.capability-grid article{min-height:220px;padding:6px 25px;border-left:1px solid #c9c6bd}.capability-grid article:first-child{border-left:0;padding-left:0}.capability-grid span{font-size:10px;color:#6d6c65}.capability-grid h3{margin:40px 0 17px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}.capability-grid p{margin:0;color:#3e3e38;font-size:13px;line-height:1.75}.about{display:grid;grid-template-columns:minmax(280px,36%) 1fr;border-bottom:1px solid #c9c6bd}.about-media{min-height:510px;display:grid;place-items:center;background:linear-gradient(145deg,#a8aaa5,#e6e3dc);border-right:1px solid #c9c6bd;overflow:hidden}.about-media img{width:100%;height:100%;object-fit:cover;object-position:center}.about-copy{padding:clamp(50px,8vw,120px);display:grid;align-content:center}.about h2{margin:0 0 28px;font-size:clamp(42px,5vw,70px);font-weight:400;line-height:.95;letter-spacing:-.07em}.about-copy>p:not(.eyebrow){max-width:410px;margin:0 0 32px;font-size:15px;line-height:1.5}.button-dark{width:max-content;color:#11110f}footer{display:flex;justify-content:space-between;gap:20px;padding:22px clamp(20px,5vw,72px);font-size:9px;letter-spacing:.1em}footer a{color:inherit;text-decoration:none}
+  @media(max-width:760px){.hero{min-height:720px}.nav{height:64px;padding:0 20px}.nav nav{display:none}.menu{display:block}.hero-copy{padding:112px 20px 60px}.hero h1{font-size:clamp(48px,14vw,68px);line-height:.93}.categories{max-width:330px;margin:26px 0 34px;font-size:9px}.hero-meta{display:none}.intro-panel{display:block;padding:25px 20px}.intro-panel p:last-child{font-size:16px}.discipline{padding:72px 0}.discipline-heading{display:block;padding:0 20px 27px}.discipline h2{font-size:55px;margin:0 0 18px}.discipline-intro{font-size:15px;margin:0 0 20px}.text-link{display:inline-block}.project-rail{display:flex;gap:13px;overflow:auto;padding:0 20px 10px;scroll-snap-type:x mandatory}.project{flex:0 0 86vw;min-width:86vw;scroll-snap-align:start}.project-media{height:60vw}.capability-grid{grid-template-columns:1fr 1fr;margin-top:25px}.capability-grid article{min-height:190px;padding:10px 16px}.capability-grid article:nth-child(3){border-left:0}.about{grid-template-columns:1fr}.about-media{min-height:360px;border-right:0;border-bottom:1px solid #c9c6bd}.about-copy{padding:65px 20px}.about h2{font-size:49px}footer{display:grid;gap:14px;padding:22px 20px;font-size:8px}.button{padding:16px 19px;gap:27px}}
+.hero-shade{background:linear-gradient(90deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.36) 35%,rgba(0,0,0,.08) 60%,transparent 78%)}.wordmark{font-size:13px;font-weight:600}.hero-copy{padding-top:clamp(42px,8vh,92px)}.project-rail{max-width:none;margin:0;padding:0 clamp(20px,5vw,72px)}.project-media{height:auto;aspect-ratio:1}@media(max-width:760px){.project-rail{padding:0 20px}.project-media{height:auto;aspect-ratio:1}}
+.categories span{display:block}
+@keyframes hero-fade{0%,27%{opacity:1}33%,94%{opacity:0}100%{opacity:1}}.hero-media img{animation-duration:9s}.hero-media img:nth-child(2){animation-delay:-6s}.hero-media img:nth-child(3){animation-delay:-3s}@media(prefers-reduced-motion:reduce){.hero-media img{animation:none}.hero-media img:first-child{opacity:1}.hero-media img:not(:first-child){display:none}}
+@media(max-width:760px){.project-rail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 13px;overflow:visible;padding:0 20px;align-items:stretch}.project{min-width:0;height:100%;display:flex;flex-direction:column}.project:first-child{grid-column:1/-1}.project-media{height:auto;aspect-ratio:1}.project:first-child .project-media{aspect-ratio:16/10}.project-caption{display:grid;grid-template-columns:22px 1fr;gap:7px;flex:1;border-top:1px solid #c9c6bd;border-bottom:1px solid #c9c6bd;padding:10px 0 14px}.project-caption b{display:none}.project-caption>span{font-size:10px}.project-caption h3{font-size:14px;line-height:1.15}.project-caption p{font-size:10px}}
+</style>
+<style>@media(max-width:760px){.nav{height:64px;min-height:64px;padding:0 20px;align-items:center;font-size:9px}.wordmark{font-size:9px}.nav nav{gap:12px;font-size:8px}}</style>
+<style is:global>@media(max-width:760px){.hero{height:560px!important;min-height:560px!important}.hero-media,.hero-shade{inset:0!important}.hero-media img{object-fit:cover!important;object-position:center center!important}.hero-copy{position:absolute!important;top:auto!important;bottom:30px!important;max-width:310px!important;padding:0 20px!important}.hero h1{font-size:clamp(38px,10vw,46px)!important;line-height:.93!important}.categories{margin:14px 0 18px!important;line-height:1.7!important}.button{padding:13px 16px!important}.nav{background:transparent!important}}</style>
+<style is:global>@media(max-width:760px){.nav.is-open{background:#090a09!important}.nav.is-open nav{position:absolute;top:64px;left:0;right:0;display:flex!important;flex-direction:column;gap:0;padding:10px 20px 18px;background:#090a09;font-size:10px;letter-spacing:.16em}.nav.is-open nav a{padding:14px 0;border-top:1px solid rgba(255,255,255,.18)}.menu i{transition:transform .2s ease}.nav.is-open .menu i:first-child{transform:translateY(3.5px) rotate(45deg)}.nav.is-open .menu i:last-child{transform:translateY(-3.5px) rotate(-45deg)}}</style>
